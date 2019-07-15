@@ -24,12 +24,12 @@ class GradesImport implements ToModel,WithStartRow
     public function model(array $row)
     {
         
-        $check = Student::where('name',($row[0]))->select('name')->first(); //DB::raw("TRIM(name)")
+        $check = Student::where('name',($row[0]))->first(); //DB::raw("TRIM(name)")
         
         //dd((empty($check) == true));
 
-        if(empty($check) == true){
-
+        if(!$check){
+           
             $student = new Student();
             $student->name = ($row[0]);
             $student->code = '';
